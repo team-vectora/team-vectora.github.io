@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Vectora | Projeto GrooveClub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --groove-dark: #0a090e;
+            --groove-olive-dark: #4c4e2d;
+            --groove-olive-light: #61663a;
+            --groove-brown: #ac7e4b;
+            --groove-light: #f5f5f7;
+            --groove-bg: #0a090e;
+            --groove-card: #16161a;
+            --groove-text: #f5f5f7;
+            --groove-border: rgba(108, 110, 93, 0.3);
+            --groove-highlight: rgba(172, 126, 75, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--groove-bg);
+            color: var(--groove-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+        
+        /* Notas musicais animadas ajustadas */
+        .music-note {
+            position: fixed;
+            opacity: 0.4;
+            z-index: -1;
+            animation: floatNote linear infinite;
+            bottom: -50px;
+        }
+        
+        @keyframes floatNote {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-70vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            align-items: center;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+        
+        h1, h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-align: left;
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            text-align: center;
+            margin-top: 0;
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--groove-light);
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+        
+        header p {
+            color: var(--groove-brown);
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .team-section {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--groove-light);
+            margin-bottom: 2rem;
+            text-align: left;
+            font-weight: 600;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Equipe - todos do mesmo tamanho e alinhados */
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .team-member {
+            background-color: var(--groove-card);
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--groove-border);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 160px;
+            flex-shrink: 0;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-color: var(--groove-olive-light);
+            box-shadow: 0 8px 20px rgba(97, 102, 58, 0.2);
+        }
+        
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.2rem;
+            border: 2px solid var(--groove-olive-dark);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover .member-photo {
+            border-color: var(--groove-brown);
+            transform: scale(1.05);
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            font-size: 1.1rem;
+            color: var(--groove-light);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--groove-olive-light);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(76, 78, 45, 0.2);
+            border: 1px solid var(--groove-border);
+        }
+        
+        .social-links a:hover {
+            color: var(--groove-light);
+            background-color: var(--groove-brown);
+            transform: scale(1.1);
+            border-color: var(--groove-brown);
+        }
+        
+        .team-description {
+            text-align: left;
+            max-width: 1200px;
+    
+            margin: 0 auto 3rem;
+            color: rgba(245, 245, 247, 0.8);
+            font-size: 1.1rem;
+           
+        }
+        
+        /* Seções dos Projetos */
+        .project-section {
+            margin: 5rem 0;
+        }
+        
+        .project-card {
+            background-color: var(--groove-card);
+            border-radius: 12px;
+            padding: 3rem;
+            border: 1px solid var(--groove-border);
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--groove-olive-dark), var(--groove-brown));
+        }
+        
+        .project-card h2 {
+            color: var(--groove-brown);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .project-card h2 i {
+            color: var(--groove-olive-light);
+            font-size: 1.8rem;
+        }
+        
+        .project-subtitle {
+            color: var(--groove-olive-light);
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            color: rgba(245, 245, 247, 0.9);
+            font-size: 1.05rem;
+        }
+        
+        .project-description ul {
+            padding-left: 1.2rem;
+        }
+        
+        .project-description li {
+            margin-bottom: 0.6rem;
+        }
+        
+        /* Destaque para o Groover */
+        .groover-feature {
+            background: linear-gradient(135deg, rgba(76, 78, 45, 0.2), rgba(10, 9, 14, 0.8));
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid var(--groove-olive-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .groover-feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--groove-brown), transparent 70%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .groover-feature h3 {
+            color: var(--groove-light);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .groover-feature h3 i {
+            color: var(--groove-brown);
+            font-size: 2rem;
+        }
+        
+        .feature-highlight {
+            color: var(--groove-brown);
+            font-weight: 600;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--groove-border);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(172, 126, 75, 0.3);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .tech-section {
+            margin-top: 2.5rem;
+            background-color: rgba(10, 9, 14, 0.5);
+            padding: 1.8rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--groove-olive-light);
+        }
+        
+        .tech-section h3 {
+            color: var(--groove-olive-light);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .tech-section h3 i {
+            color: var(--groove-brown);
+            font-size: 1.4rem;
+        }
+        
+        .tech-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        .tech-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(108, 110, 93, 0.2);
+            transition: all 0.2s;
+        }
+        
+        .tech-list li:hover {
+            background-color: var(--groove-highlight);
+            padding-left: 0.5rem;
+        }
+        
+        .tech-list li i {
+            color: var(--groove-olive-light);
+            width: 24px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--groove-border);
+            color: var(--groove-olive-light);
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '♫';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--groove-bg);
+            padding: 0 1rem;
+            color: var(--groove-brown);
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 900px) {
+            .team-container {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-card, .groover-feature {
+                padding: 2rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .team-member {
+                width: 140px;
+                padding: 1.5rem;
+            }
+            
+            .member-photo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .groover-feature h3 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notas musicais animadas ajustadas -->
+    <div id="music-notes-container"></div>
+    
+    <div class="container">
+        <header>
+            <div class="image-gallery">
+                    <img src="imgs/logotv.png" alt="logo team vectora">
+                </div>
+        </header>
+        
+        <section class="team-section">  
+            <div class="team-description">
+                <p>Somos estudantes do 4º ano do curso técnico em Informática do Instituto Federal de São Paulo, formamos a equipe <strong>Vectora</strong> para a disciplina de Projeto e Desenvolvimento de Sistemas (PDS).</p>
+                <p>No ano passado desenvolvemos o <strong>GrooveClub</strong>, uma rede social para músicos, e este ano estamos trabalhando no <strong>Groover</strong>, um editor musical integrado à plataforma.</p>
+            </div>
+            <div class="team-container">
+
+                <!-- Ana Oliveira -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imgs/ana.jpg" alt="Ana Oliveira">
+                    </div>
+                    <h3 class="member-name">Ana Oliveira</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/ana-luísa-de-oliveira-camardella-228123305/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/tiredmoth" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                            
+                <!-- André Araújo -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imgs/andré.jpg" alt="André Araújo">
+                    </div>
+                    <h3 class="member-name">André Araújo</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/andre-araujo-s/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Andre-06" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <!-- João Haupt -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imgs/joão.jpg" alt="João Haupt">
+                    </div>
+                    <h3 class="member-name">João Haupt</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/joão-augusto-haupt-fonseca-oliveira/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/JoaoAHaupt" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Laura Daguer -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imgs/laura.jpg" alt="Laura Daguer">
+                    </div>
+                    <h3 class="member-name">Laura Daguer</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/lauradaguerds/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/AruDaguer" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Marino Meguimi -->
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imgs/marino.jpg" alt="Marino Meguimi">
+                    </div>
+                    <h3 class="member-name">Marino Meguimi</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/marino-makoto-yorinori/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/MarinoYorinori" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projeto GrooveClub -->
+        <section class="project-section">
+            <div class="groover-feature">
+                <div class="image-gallery">
+                        <img src="imgs/logogc.png" alt="logo">
+                    </div>
+                <p class="project-subtitle">Rede Social para Músicos</p>
+                
+                <div class="project-description">
+                    <p>Desenvolvido em 2024 como nosso projeto de TDS, o GrooveClub é uma plataforma inovadora que conecta músicos e fãs em um ambiente colaborativo.</p>
+                    
+                    <p>A rede social permite que artistas compartilhem suas músicas, encontrem colaboradores, participem de comunidades específicas por gênero musical e interajam com seus fãs de forma direta.</p>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="imgs/groove1.png" alt="tela cadastro">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="imgs/groove2.png" alt="feed">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="imgs/groove3.png" alt="perfil">
+                        </div>
+                    </div>
+                    
+                    <p>Principais funcionalidades implementadas:</p>
+                    <ul>
+                        <li>Perfis profissionais</li>
+                        <li>Sistema de postagem</li>
+                        <li>Player de áudio integrado</li>
+                        <li>Sistema de curtidas</li>
+                        <li>Cadastro personalizado</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-section">
+                    <h3><i class="fas fa-code"></i> Tecnologias Utilizadas</h3>
+                    <ul class="tech-list">
+                        <li><i class="fab fa-python"></i> Backend: Python com Flask</li>
+                        <li><i class="fab fa-react"></i> Frontend: React</li>
+                        <li><i class="fas fa-database"></i> Banco de Dados: MySQL</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projeto Groover -->
+        <section class="project-section">
+            <div class="groover-feature">
+                <h3><i class="fas fa-music"></i> Groover - Editor Musical Integrado</h3>
+                <p class="project-subtitle">Nosso projeto atual para PDS 2025</p>
+                
+                <div class="project-description">
+                    <p>Este ano estamos desenvolvendo o <span class="feature-highlight">Groover</span>, um editor de música completo que será integrado diretamente ao GrooveClub, transformando a plataforma em um verdadeiro estúdio virtual.</p>
+                    
+                    <p>O Groover permitirá que os usuários criem, editem e compartilhem músicas diretamente na plataforma, sem necessidade de softwares externos.</p>
+                    
+                    <div class="image-gallery">
+                        <div class="gallery-item">
+                            <img src="/assets/images/projects/groover1.jpg" alt="Interface do editor musical">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="/assets/images/projects/groover2.jpg" alt="Músicos colaborando">
+                        </div>
+                    </div>
+                    
+                    <p>Funcionalidades planejadas para o Groover:</p>
+                    <ul>
+                        <li>Editor de partituras e arranjos musicais</li>
+                        <li>Gravação e edição de áudio</li>
+                        <li>Biblioteca de samples e loops</li>
+                        <li>Colaboração entre usuários</li>
+                        <li>Exportação em formatos profissionais</li>
+                        <li>Integração direta com o perfil do GrooveClub</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-section">
+                    <h3><i class="fas fa-cogs"></i> Tecnologias que Utilizaremos</h3>
+                    <ul class="tech-list">
+                        <li><i class="fab fa-js"></i> Web Audio API + Tone.js</li>
+                        <li><i class="fab fa-react"></i> React com TypeScript</li>
+                        <li><i class="fas fa-server"></i> Serviços em Node.js</li>
+                        <li><i class="fas fa-database"></i> Otimizações no banco de dados</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2024 Team Vectora | Projeto de PDS - IFSP Campus São Paulo</p>
+            <p>Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+    <script>
+        // Cria notas musicais animadas ajustadas mais para baixo
+        function createMusicNotes() {
+            const notes = ['♪', '♫', '♩', '♬', '♭', '♮'];
+            const container = document.getElementById('music-notes-container');
+            
+            // Cria várias notas posicionadas mais para baixo
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const note = document.createElement('div');
+                    note.className = 'music-note';
+                    note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                    note.style.left = Math.random() * 100 + 'vw';
+                    note.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    note.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                    note.style.animationDelay = (Math.random() * 3) + 's';
+                    container.appendChild(note);
+                    
+                    // Remove a nota após a animação
+                    setTimeout(() => {
+                        note.remove();
+                    }, 20000);
+                }, i * 800);
+            }
+        }
+        
+        // Inicia as notas e repete a cada 20 segundos
+        createMusicNotes();
+        setInterval(createMusicNotes, 20000);
+        
+        // Adiciona algumas notas iniciais
+        window.onload = function() {
+            for (let i = 0; i < 4; i++) {
+                setTimeout(createMusicNotes, i * 1000);
+            }
+        };
+    </script>
+</body>
+</html>

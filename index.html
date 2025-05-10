@@ -203,6 +203,18 @@
             transform: scale(1.1);
             border-color: var(--groove-brown);
         }
+        .social-links a:first-child:hover {
+            
+            background-color: #0077B5;
+            border-color: var(--groove-light);
+
+        }
+        .social-links a:nth-child(2):hover {
+            
+            background-color: #003366;
+            border-color: var(--groove-light);
+
+        }
         
         .team-description {
             text-align: left;
@@ -212,6 +224,10 @@
             color: rgba(245, 245, 247, 0.8);
             font-size: 1.1rem;
            
+        }
+
+        .team-description p{
+            text-align: center;
         }
         
         /* Seções dos Projetos */
@@ -479,9 +495,10 @@
     
     <div class="container">
         <header>
-            <div class="image-gallery">
-                    <img src="imgs/logotv.png" alt="logo team vectora">
-                </div>
+            <div class="image-gallery" style="display: flex; align-items: center; justify-content: center;">
+                <img src="imgs/logotv.png" alt="logo team vectora">
+            </div>
+            
         </header>
         
         <section class="team-section">  

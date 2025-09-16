@@ -95,6 +95,7 @@
             font-weight: 700;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
+            z-index: 1001;
         }
 
         .logo-img {
@@ -133,6 +134,41 @@
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 2rem;
+            height: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 2rem;
+            height: 0.25rem;
+            background: var(--groove-light);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
         }
 
         .cta-button {
@@ -597,6 +633,35 @@
             resize: vertical;
         }
 
+        /* Mensagens de status do formulário */
+        .form-status {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .form-status.success {
+            background-color: rgba(46, 125, 50, 0.2);
+            border: 1px solid rgba(46, 125, 50, 0.5);
+            color: #a5d6a7;
+            display: block;
+        }
+
+        .form-status.error {
+            background-color: rgba(211, 47, 47, 0.2);
+            border: 1px solid rgba(211, 47, 47, 0.5);
+            color: #e57373;
+            display: block;
+        }
+
+        .form-status.loading {
+            background-color: rgba(33, 150, 243, 0.2);
+            border: 1px solid rgba(33, 150, 243, 0.5);
+            color: #90caf9;
+            display: block;
+        }
+
         /* Footer */
         footer {
             background-color: var(--groove-card);
@@ -660,7 +725,7 @@
             color: var(--groove-olive-light);
         }
 
-        /* Responsividade */
+        /* Responsividade - Mobile First Approach */
         @media (max-width: 1100px) {
             .developers-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -673,7 +738,27 @@
 
         @media (max-width: 968px) {
             .nav-menu {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--groove-card);
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                padding: 2rem;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .hamburger {
+                display: flex;
             }
             
             .container {
@@ -683,6 +768,8 @@
             .hero-section {
                 flex-direction: column;
                 text-align: center;
+                padding-top: 100px;
+                min-height: auto;
             }
             
             .hero-content {
@@ -697,12 +784,57 @@
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            .hero-title {
+                font-size: 2.5rem;
+                margin: 1rem 0;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+                margin: 0.5rem 0 1.5rem;
+            }
+
+            .hero-description p {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .hero-visual {
+                margin-top: 2rem;
+                height: 300px;
+            }
+
+            .carousel-nav {
+                width: 35px;
+                height: 35px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
         }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo-img {
+                height: 35px;
+            }
+
             .hero-section {
-                min-height: 80vh;
-                padding-top: 100px;
+                padding-top: 90px;
             }
             
             .developers-grid {
@@ -712,6 +844,7 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
 
             .developer-card.large {
@@ -723,11 +856,63 @@
                 height: 30px;
                 font-size: 0.8rem;
             }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section, .team-section, .tech-section, .contact-section {
+                padding: 4rem 0;
+                margin: 2rem 0;
+            }
+
+            .footer-content {
+                text-align: left;
+            }
+
+            .footer-description {
+                text-align: left;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .developer-photo {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .developer-photo.large {
+                width: 160px;
+                height: 160px;
+            }
         }
 
         @media (max-width: 480px) {
             .nav-container {
-                padding: 0 1rem;
+                padding: 0 0.8rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
             }
             
             .tech-card {
@@ -739,13 +924,13 @@
             }
             
             .developer-photo {
-                width: 150px;
-                height: 150px;
+                width: 130px;
+                height: 130px;
             }
             
             .developer-photo.large {
-                width: 170px;
-                height: 170px;
+                width: 140px;
+                height: 140px;
             }
             
             .contact-form {
@@ -754,6 +939,61 @@
             
             .team-vectora-logo img {
                 max-width: 250px;
+            }
+
+            .form-group input, 
+            .form-group textarea {
+                padding: 0.7rem;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .carousel-controls {
+                bottom: 10px;
+            }
+
+            .carousel-indicator {
+                width: 8px;
+                height: 8px;
+            }
+
+            .footer-content {
+                gap: 1.5rem;
+            }
+
+            .footer-heading {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Melhorias específicas para orientação paisagem em celulares */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                min-height: 120vh;
+                padding-top: 70px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                margin: 0.5rem 0;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin: 0.5rem 0;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-visual {
+                height: 200px;
             }
         }
     </style>
@@ -768,7 +1008,13 @@
                 <span>Groover</span>
             </a>
             
-            <ul class="nav-menu">
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="#about" class="nav-link">Sobre</a></li>
                 <li><a href="#tech" class="nav-link">Tecnologias</a></li>
                 <li><a href="#team" class="nav-link">Team Vectora</a></li>
@@ -1024,9 +1270,14 @@
                     </div>
                 </div>
                 
-                <form class="contact-form" action="https://formsubmit.co/grooveclub.vectora@gmail.com" method="POST">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/grooveclub.vectora@gmail.com" method="POST">
                     <input type="hidden" name="_subject" value="Novo contato do site Groover">
                     <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://seu-site.com/obrigado.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div id="form-status" class="form-status"></div>
+                    
                     <div class="form-group">
                         <label for="name">Nome</label>
                         <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
@@ -1039,7 +1290,7 @@
                         <label for="message">Mensagem</label>
                         <textarea id="message" name="message" placeholder="Sua mensagem..." required></textarea>
                     </div>
-                    <button type="submit" class="cta-button">Enviar Mensagem</button>
+                    <button type="submit" class="cta-button" id="submit-button">Enviar Mensagem</button>
                 </form>
             </div>
         </section>
@@ -1217,8 +1468,98 @@
             startAutoSlide();
         }
         
+        // Configuração do formulário de contato
+        function setupContactForm() {
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+            const submitButton = document.getElementById('submit-button');
+            
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Exibir estado de carregamento
+                formStatus.textContent = 'Enviando sua mensagem...';
+                formStatus.className = 'form-status loading';
+                submitButton.disabled = true;
+                
+                try {
+                    // Coletar dados do formulário
+                    const formData = new FormData(contactForm);
+                    
+                    // Enviar dados usando fetch
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        // Sucesso
+                        formStatus.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
+                        formStatus.className = 'form-status success';
+                        contactForm.reset();
+                    } else {
+                        // Erro
+                        throw new Error('Falha no envio do formulário');
+                    }
+                } catch (error) {
+                    // Exibir mensagem de erro
+                    formStatus.textContent = 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde ou entre em contato diretamente pelo email grooveclub.vectora@gmail.com';
+                    formStatus.className = 'form-status error';
+                } finally {
+                    submitButton.disabled = false;
+                    
+                    // Limpar mensagem após 5 segundos
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                        formStatus.className = 'form-status';
+                    }, 5000);
+                }
+            });
+        }
+
+        // Menu hamburguer para mobile
+        function setupMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                
+                // Prevenir scroll do body quando o menu está aberto
+                if (navMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Fechar menu ao clicar em um link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+        }
+        
         // Inicializar carrosséis quando o DOM estiver carregado
-        document.addEventListener('DOMContentLoaded', initCarousels);
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousels();
+            setupContactForm();
+            setupMobileMenu();
+            
+            // Configurar URL de redirecionamento para o formulário
+            const nextInput = document.querySelector('input[name="_next"]');
+            if (nextInput) {
+                nextInput.value = window.location.origin + '/obrigado.html';
+            }
+        });
     </script>
 </body>
 </html>

@@ -203,12 +203,88 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--groove-border);
+            position: relative;
         }
 
-        .hero-visual img {
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
             width: 100%;
-            height: auto;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background-color: var(--groove-brown);
+            transform: scale(1.2);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-nav:hover {
+            background-color: var(--groove-brown);
+        }
+
+        .carousel-nav.prev {
+            left: 15px;
+        }
+
+        .carousel-nav.next {
+            right: 15px;
         }
 
         /* Sobre o Groover */
@@ -259,12 +335,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
+            position: relative;
         }
 
         /* Tecnologias Section */
@@ -646,6 +717,12 @@
             .developer-card.large {
                 grid-column: span 1;
             }
+
+            .carousel-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -715,7 +792,34 @@
             </div>
             
             <div class="hero-visual">
-                <img src="imgs/editor-groover.png" alt="Interface do Editor Groover">
+                <div class="carousel" id="editor-carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <img src="imgs/editor-groover.png" alt="Interface do Editor Groover">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/conta-groover.jpg" alt="Página de Conta do Groover">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/perfil-groover.jpg" alt="Página de Perfil do Groover">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="imgs/feed-groover.jpg" alt="Feed do Groover">
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="carousel-controls">
+                        <div class="carousel-indicator active"></div>
+                        <div class="carousel-indicator"></div>
+                        <div class="carousel-indicator"></div>
+                        <div class="carousel-indicator"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -723,12 +827,35 @@
             <h2 class="section-title">Sobre o Groover</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>O Groover surge como resposta às limitações das ferramentas de produção musical digital atuais, que foram concebidas, em sua maioria, para uso individual. Editores MIDI convencionais, mesmo os mais avançados, carecem de funções nativas para colaboração, exigindo fluxos de trabalho alternativos que tornam o processo criativo conjunto mais difícil e fragmentado.</p>
+                    <p>O Groover surge como resposta às limitações das ferramentas de produção musical digital atuais, que foram concebidas, em sua maioria, para uso individual. Editores MIDI convencionais, mesmo os mais avançados, carecem de funções nativas para colaboração, exigindo fluxos de trabalho alternativos que tornam o processo creativo conjunto mais difícil e fragmentado.</p>
                     <p>Desenvolvido originalmente como parte do GrooveClub — uma plataforma anterior voltada à distribuição de conteúdo e ao networking entre músicos —, o Groover trata-se de um sistema técnico e creativo que visa facilitar a produção conjunta entre artistas por meio de um editor MIDI compartilhado.</p>
                     <p>A plataforma permite coautoria entre vários músicos, independentemente de sua localização geográfica, através de funcionalidades como visualização compartilhada, controle de versão e gerenciamento de conflitos. O desenvolvimento do projeto demonstrou ser tecnicamente viável e os testes de usabilidade validaram a proposta, comprovando que o Groover democratiza o acesso a ferramentas de produção profissional e promove um ecossistema musical mais dinâmico e inclusivo.</p>
                 </div>
                 <div class="about-image">
-                    <img src="imgs/groove1.png" alt="Exemplo de projeto no Groover">
+                    <div class="carousel" id="groove-carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <img src="imgs/groove1.png" alt="Exemplo de projeto no Groover">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="imgs/groove2.png" alt="Exemplo de projeto no Groover">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="imgs/groove3.png" alt="Exemplo de projeto no Groover">
+                            </div>
+                        </div>
+                        <button class="carousel-nav prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-nav next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-controls">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -796,7 +923,7 @@
             <div class="team-content">
                 <div class="team-description">
                     <p>O Team Vectora é formado por cinco estudantes do 4º ano do curso técnico em Informática do Instituto Federal de São Paulo (IFSP), criado para a disciplina de Projeto e Desenvolvimento de Sistemas (PDS). Nossa missão é unir tecnologia e música em soluções inovadoras que democratizem o acesso à produção musical profissional.</p>
-                    <p>No ano anterior, desenvolvemos o GrooveClub, uma rede social especializada para músicos que permite compartilhamento de conteúdo, networking e descoberta de novos talentos. O sucesso e aprendizado com o GrooveClub inspiraram a criação do Groover, uma evolução natural que foca na etapa de criação musical em si, fechando o ciclo completo desde a composição até a distribuição.</p>
+                    <p>No ano anterior, desenvolvimos o GrooveClub, uma rede social especializada para músicos que permite compartilhamento de conteúdo, networking e descoberta de novos talentos. O sucesso e aprendizado com o GrooveClub inspiraram a criação do Groover, uma evolução natural que foca na etapa de criação musical em si, fechando o ciclo completo desde a composição até a distribuição.</p>
                     <p>Nosso trabalho seguir metodologias ágeis adaptadas, com ciclos iterativos e incrementais que possibilitam entregas frequentes e revisões constantes. Utilizamos ferramentas modernas como Git para controle de versão e seguimos boas práticas de arquitetura de software com separação clara entre lógica de apresentação, negócios e dados.</p>
                 </div>
             </div>
@@ -810,7 +937,7 @@
                     </div>
                     <h3 class="developer-name">Ana Oliveira</h3>
                     <p class="developer-role">Criação Artística e Documentação</p>
-                    <p class="developer-description">Responsável pela concepção visual do projeto e organização da documentação técnica. Cuida da identidade artística e garantia de qualidade da experiência criativa.</p>
+                    <p class="developer-description">Responsável pela concepção visual do projeto e organização da documentação técnica. Cuida da identidade artística và garantia de qualidade da experiência creativa.</p>
                     <div class="developer-links">
                         <a href="https://www.linkedin.com/in/ana-luísa-de-oliveira-camardella-228123305/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/tiredmoth" title="GitHub"><i class="fab fa-github"></i></a>
@@ -1001,6 +1128,97 @@
             createMusicNotes();
             setInterval(createMusicNotes, 20000);
         }
+
+        // Funções para os carrosséis
+        function initCarousels() {
+            // Inicializar carrossel do editor
+            const editorCarousel = document.getElementById('editor-carousel');
+            initCarousel(editorCarousel, 4000); // Troca a cada 4 segundos
+            
+            // Inicializar carrossel do groove
+            const grooveCarousel = document.getElementById('groove-carousel');
+            initCarousel(grooveCarousel, 3500); // Troca a cada 3.5 segundos
+        }
+        
+        function initCarousel(carousel, interval) {
+            const inner = carousel.querySelector('.carousel-inner');
+            const items = carousel.querySelectorAll('.carousel-item');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            const prevBtn = carousel.querySelector('.carousel-nav.prev');
+            const nextBtn = carousel.querySelector('.carousel-nav.next');
+            
+            let currentIndex = 0;
+            let intervalId;
+            
+            // Função para atualizar o carrossel
+            function updateCarousel() {
+                inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Atualizar indicadores
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Função para avançar para o próximo slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            }
+            
+            // Função para retroceder para o slide anterior
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateCarousel();
+            }
+            
+            // Iniciar a troca automática
+            function startAutoSlide() {
+                intervalId = setInterval(nextSlide, interval);
+            }
+            
+            // Parar a troca automática
+            function stopAutoSlide() {
+                clearInterval(intervalId);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                nextSlide();
+                startAutoSlide();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                stopAutoSlide();
+                prevSlide();
+                startAutoSlide();
+            });
+            
+            // Event listeners para os indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    stopAutoSlide();
+                    currentIndex = index;
+                    updateCarousel();
+                    startAutoSlide();
+                });
+            });
+            
+            // Pausar autoplay quando o mouse estiver sobre o carrossel
+            carousel.addEventListener('mouseenter', stopAutoSlide);
+            carousel.addEventListener('mouseleave', startAutoSlide);
+            
+            // Iniciar autoplay
+            startAutoSlide();
+        }
+        
+        // Inicializar carrosséis quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', initCarousels);
     </script>
 </body>
 </html>

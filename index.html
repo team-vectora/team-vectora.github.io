@@ -23,6 +23,9 @@
             --groove-blue: #4a6b9b;
             --groove-purple: #7b4b8c;
             --groove-teal: #3c8d89;
+            --github-dark: #0d1117;
+            --github-border: #30363d;
+            --github-card: #161b22;
         }
 
         * {
@@ -64,17 +67,17 @@
             }
         }
 
-        /* Header e Navegação */
+        /* Header estilo GitHub */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(10, 9, 14, 0.95);
+            background: var(--github-dark);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--groove-border);
+            border-bottom: 1px solid var(--github-border);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.8rem 0;
         }
 
         .nav-container {
@@ -105,8 +108,10 @@
 
         .nav-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            margin-left: auto;
+            margin-right: 2rem;
         }
 
         .nav-link {
@@ -115,16 +120,23 @@
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
         }
 
         .nav-link:hover {
             color: var(--groove-brown);
         }
 
+        .nav-link.active {
+            color: var(--groove-brown);
+            font-weight: 600;
+        }
+
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 0;
             height: 2px;
@@ -132,7 +144,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
 
@@ -175,19 +187,20 @@
             display: inline-block;
             background: var(--groove-gradient);
             color: var(--groove-dark);
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(172, 126, 75, 0.3);
+            box-shadow: 0 0 0 1px rgba(172, 126, 75, 0.2);
             border: none;
             cursor: pointer;
+            font-size: 0.9rem;
         }
         
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(172, 126, 75, 0.4);
+            box-shadow: 0 4px 12px rgba(172, 126, 75, 0.3);
         }
 
         .container {
@@ -196,31 +209,33 @@
             padding: 2rem;
         }
 
-        /* Hero Section */
+        /* Hero Section estilo GitHub */
         .hero-section {
             display: flex;
             align-items: center;
             min-height: 100vh;
             padding-top: 80px;
             position: relative;
+            margin-bottom: 4rem;
         }
 
         .hero-content {
             flex: 1;
-            padding-right: 2rem;
+            padding-right: 3rem;
         }
 
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin: 2rem 0 1rem;
             color: var(--groove-light);
             line-height: 1.1;
+            font-weight: 700;
         }
         
         .hero-subtitle {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
             color: var(--groove-olive-light);
             margin: 1rem 0 2rem;
             font-weight: 500;
@@ -228,17 +243,40 @@
 
         .hero-description {
             font-size: 1.1rem;
-            color: rgba(245, 245, 247, 0.9);
+            color: rgba(245, 245, 247, 0.8);
             margin-bottom: 2rem;
             line-height: 1.8;
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .secondary-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--groove-light);
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--github-border);
+        }
+        
+        .secondary-button:hover {
+            background: rgba(108, 110, 93, 0.1);
+            border-color: var(--groove-olive-light);
+        }
+
         .hero-visual {
             flex: 1;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--groove-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--github-border);
             position: relative;
         }
 
@@ -323,32 +361,113 @@
             right: 15px;
         }
 
-        /* Sobre o Groover */
-        .about-section {
-            padding: 6rem 0;
-            background: rgba(22, 22, 26, 0.4);
-            border-radius: 20px;
-            margin: 4rem 0;
+        /* Sections estilo GitHub */
+        .section {
+            margin-bottom: 4rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--github-border);
         }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.5rem;
             color: var(--groove-light);
-            text-align: center;
+            font-weight: 600;
         }
 
         .section-subtitle {
             color: var(--groove-olive-light);
-            margin-bottom: 3rem;
-            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
             max-width: 800px;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards estilo GitHub */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--github-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--github-border);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--groove-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--groove-olive-light);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            color: var(--groove-brown);
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--groove-light);
+            font-weight: 600;
+        }
+
+        .card-description {
+            color: rgba(245, 245, 247, 0.7);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card-footer {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--groove-olive-light);
+            font-size: 0.85rem;
+        }
+
+        /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -357,119 +476,72 @@
         }
 
         .about-text {
-            color: rgba(245, 245, 247, 0.9);
+            color: rgba(245, 245, 247, 0.8);
             line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .about-text p {
             margin-bottom: 1.5rem;
-            text-align: justify;
         }
 
         .about-image {
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             position: relative;
         }
 
-        /* Tecnologias Section */
-        .tech-section {
-            padding: 6rem 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tech-card {
-            background-color: var(--groove-card);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--groove-border);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .tech-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--groove-brown);
-        }
-
-        .tech-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--groove-light);
-        }
-
-        .tech-description {
-            color: rgba(245, 245, 247, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Team Vectora Section */
-        .team-section {
-            padding: 6rem 0;
-            background: rgba(22, 22, 26, 0.4);
-            border-radius: 20px;
-            margin: 4rem 0;
-        }
-
-        .team-content {
+        /* Team Section */
+        .team-header {
+            text-align: center;
             margin-bottom: 3rem;
         }
 
+        .team-vectora-logo {
+            margin-bottom: 2rem;
+        }
+
+        .team-vectora-logo img {
+            max-width: 300px;
+            height: auto;
+        }
+
         .team-description {
-            color: rgba(245, 245, 247, 0.9);
+            color: rgba(245, 245, 247, 0.8);
             line-height: 1.8;
             font-size: 1.1rem;
             max-width: 900px;
             margin: 0 auto 2rem;
-            text-align: center; /* Alterado para centralizar o texto */
-        }
-
-        .developers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .developer-card {
-            background-color: var(--groove-card);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--groove-border);
             text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .member-card {
+            background-color: var(--github-card);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--github-border);
             transition: all 0.3s ease;
+            text-align: center;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
-        /* Ajustes para os cards da Laura e Marino */
-        .developer-card.large {
-            grid-column: span 1.5; /* Ocupam 1.5 colunas cada */
-        }
-
-        .developer-card:hover {
+        .member-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--groove-olive-light);
         }
 
-        .developer-photo {
+        .member-photo {
             width: 180px;
             height: 180px;
             border-radius: 50%;
@@ -479,32 +551,27 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .developer-photo.large {
-            width: 200px;
-            height: 200px;
-        }
-
-        .developer-photo img {
+        .member-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .developer-name {
+        .member-name {
             font-size: 1.3rem;
             color: var(--groove-light);
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
-        .developer-role {
+        .member-role {
             color: var(--groove-brown);
             margin-bottom: 1rem;
             font-size: 1rem;
             font-weight: 500;
         }
 
-        .developer-description {
+        .member-description {
             color: rgba(245, 245, 247, 0.7);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
@@ -512,14 +579,14 @@
             flex-grow: 1;
         }
 
-        .developer-links {
+        .member-links {
             display: flex;
             justify-content: center;
             gap: 0.8rem;
             margin-top: auto;
         }
 
-        .developer-links a {
+        .member-links a {
             color: var(--groove-olive-light);
             font-size: 1.1rem;
             transition: all 0.3s;
@@ -530,46 +597,31 @@
             justify-content: center;
             border-radius: 50%;
             background-color: rgba(76, 78, 45, 0.2);
-            border: 1px solid var(--groove-border);
+            border: 1px solid var(--github-border);
             text-decoration: none;
         }
 
-        .developer-links a:hover {
+        .member-links a:hover {
             color: var(--groove-light);
             background-color: var(--groove-brown);
             transform: scale(1.1);
         }
 
-        .team-vectora-logo {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .team-vectora-logo img {
-            max-width: 300px;
-            height: auto;
-        }
-
         /* Contact Section */
-        .contact-section {
-            padding: 6rem 0;
-        }
-
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .contact-info {
-            color: rgba(245, 245, 247, 0.9);
+            color: rgba(245, 245, 247, 0.8);
             line-height: 1.8;
         }
 
         .contact-info p {
             margin-bottom: 1.5rem;
-            text-align: justify;
         }
 
         .social-links {
@@ -580,16 +632,16 @@
 
         .social-link {
             color: var(--groove-olive-light);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: all 0.3s;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background-color: rgba(76, 78, 45, 0.2);
-            border: 1px solid var(--groove-border);
+            border: 1px solid var(--github-border);
             text-decoration: none;
         }
 
@@ -600,10 +652,10 @@
         }
 
         .contact-form {
-            background-color: var(--groove-card);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--groove-border);
+            background-color: var(--github-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--github-border);
         }
 
         .form-group {
@@ -615,30 +667,40 @@
             margin-bottom: 0.5rem;
             color: var(--groove-light);
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 0.8rem;
-            border-radius: 8px;
-            border: 1px solid var(--groove-border);
-            background-color: rgba(10, 9, 14, 0.5);
+            border-radius: 6px;
+            border: 1px solid var(--github-border);
+            background-color: var(--github-dark);
             color: var(--groove-light);
             font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--groove-brown);
+            box-shadow: 0 0 0 3px rgba(172, 126, 75, 0.1);
         }
 
         .form-group textarea {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
 
-        /* Mensagens de status do formulário */
         .form-status {
             padding: 1rem;
-            border-radius: 8px;
+            border-radius: 6px;
             margin-bottom: 1.5rem;
             display: none;
+            font-size: 0.9rem;
         }
 
         .form-status.success {
@@ -664,17 +726,17 @@
 
         /* Footer */
         footer {
-            background-color: var(--groove-card);
-            padding: 4rem 0 2rem;
+            background-color: var(--github-dark);
+            padding: 3rem 0 2rem;
             margin-top: 4rem;
-            border-top: 1px solid var(--groove-border);
+            border-top: 1px solid var(--github-border);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-logo {
@@ -684,20 +746,21 @@
         }
 
         .footer-logo img {
-            max-width: 180px;
+            max-width: 150px;
         }
 
         .footer-description {
             color: rgba(245, 245, 247, 0.7);
             line-height: 1.6;
-            text-align: justify;
+            font-size: 0.9rem;
         }
 
         .footer-heading {
             font-family: 'Space Grotesk', sans-serif;
             color: var(--groove-light);
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .footer-links {
@@ -712,6 +775,7 @@
             color: rgba(245, 245, 247, 0.7);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -721,21 +785,12 @@
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid var(--groove-border);
+            border-top: 1px solid var(--github-border);
             color: var(--groove-olive-light);
+            font-size: 0.9rem;
         }
 
-        /* Responsividade - Mobile First Approach */
-        @media (max-width: 1100px) {
-            .developers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .developer-card.large {
-                grid-column: span 1;
-            }
-        }
-
+        /* Responsividade */
         @media (max-width: 968px) {
             .nav-menu {
                 position: fixed;
@@ -746,7 +801,7 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background-color: var(--groove-card);
+                background-color: var(--github-card);
                 transition: right 0.3s ease;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
@@ -777,6 +832,10 @@
                 margin-bottom: 2rem;
             }
             
+            .hero-buttons {
+                justify-content: center;
+            }
+            
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -798,16 +857,6 @@
             .hero-description p {
                 text-align: center;
                 margin-bottom: 1rem;
-            }
-
-            .hero-visual {
-                margin-top: 2rem;
-                height: 300px;
-            }
-
-            .carousel-nav {
-                width: 35px;
-                height: 35px;
             }
 
             .section-title {
@@ -837,7 +886,11 @@
                 padding-top: 90px;
             }
             
-            .developers-grid {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -847,45 +900,9 @@
                 gap: 2rem;
             }
 
-            .developer-card.large {
-                grid-column: span 1;
-            }
-
-            .carousel-nav {
-                width: 30px;
-                height: 30px;
-                font-size: 0.8rem;
-            }
-
-            .tech-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-section, .team-section, .tech-section, .contact-section {
-                padding: 4rem 0;
-                margin: 2rem 0;
-            }
-
-            .footer-content {
-                text-align: left;
-            }
-
-            .footer-description {
-                text-align: left;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .developer-photo {
+            .member-photo {
                 width: 150px;
                 height: 150px;
-            }
-            
-            .developer-photo.large {
-                width: 160px;
-                height: 160px;
             }
         }
 
@@ -910,35 +927,31 @@
                 font-size: 0.95rem;
             }
 
-            .cta-button {
-                padding: 0.7rem 1.5rem;
+            .cta-button, .secondary-button {
+                padding: 0.7rem 1.2rem;
                 font-size: 0.9rem;
             }
             
-            .tech-card {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .card {
+                padding: 1.2rem;
+            }
+            
+            .member-card {
                 padding: 1.5rem;
             }
             
-            .developer-card {
-                padding: 1.5rem;
-            }
-            
-            .developer-photo {
+            .member-photo {
                 width: 130px;
                 height: 130px;
             }
             
-            .developer-photo.large {
-                width: 140px;
-                height: 140px;
-            }
-            
             .contact-form {
-                padding: 1.5rem;
-            }
-            
-            .team-vectora-logo img {
-                max-width: 250px;
+                padding: 1.2rem;
             }
 
             .form-group input, 
@@ -947,18 +960,9 @@
             }
 
             .social-link {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
-
-            .carousel-controls {
-                bottom: 10px;
-            }
-
-            .carousel-indicator {
-                width: 8px;
-                height: 8px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
             }
 
             .footer-content {
@@ -966,34 +970,7 @@
             }
 
             .footer-heading {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Melhorias específicas para orientação paisagem em celulares */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero-section {
-                min-height: 120vh;
-                padding-top: 70px;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-                margin: 0.5rem 0;
-            }
-
-            .hero-subtitle {
                 font-size: 1rem;
-                margin: 0.5rem 0;
-            }
-
-            .hero-description {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
-            }
-
-            .hero-visual {
-                height: 200px;
             }
         }
     </style>
@@ -1008,18 +985,18 @@
                 <span>Groover</span>
             </a>
             
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#tech" class="nav-link">Tecnologias</a></li>
+                <li><a href="#team" class="nav-link">Equipe</a></li>
+                <li><a href="#contact" class="nav-link">Contato</a></li>
+            </ul>
+            
             <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" class="nav-link">Sobre</a></li>
-                <li><a href="#tech" class="nav-link">Tecnologias</a></li>
-                <li><a href="#team" class="nav-link">Team Vectora</a></li>
-                <li><a href="#contact" class="nav-link">Contato</a></li>
-            </ul>
             
             <a href="https://groover.app.br" class="cta-button">Experimente Agora</a>
         </div>
@@ -1034,7 +1011,10 @@
                     <p>O Groover é uma plataforma inovadora desenvolvida para superar as limitações das ferramentas convencionais de produção musical. Com foco na colaboração, permite que múltiplos músicos trabalhem simultaneamente na mesma composição, independentemente de sua localização geográfica.</p>
                     <p>Diferentemente de plataformas convencionais que se limitam a funções sociais básicas de compartilhamento, o Groover propõe um espaço técnico completo para a produção musical conjunta, com recursos avançados como visualização em tempo real, controle de versão e gestão de conflitos.</p>
                 </div>
-                <a href="https://groover.app.br" class="cta-button">Começar a Criar</a>
+                <div class="hero-buttons">
+                    <a href="https://groover.app.br" class="cta-button">Começar a Criar</a>
+                    <a href="#about" class="secondary-button">Saiba Mais</a>
+                </div>
             </div>
             
             <div class="hero-visual">
@@ -1069,8 +1049,11 @@
             </div>
         </section>
 
-        <section class="about-section" id="about">
-            <h2 class="section-title">Sobre o Groover</h2>
+        <section class="section" id="about">
+            <div class="section-header">
+                <h2 class="section-title">Sobre o Groover</h2>
+            </div>
+            
             <div class="about-content">
                 <div class="about-text">
                     <p>O Groover surge como resposta às limitações das ferramentas de produção musical digital atuais, que foram concebidas, em sua maioria, para uso individual. Editores MIDI convencionais, mesmo os mais avançados, carecem de funções nativas para colaboração, exigindo fluxos de trabalho alternativos que tornam o processo creativo conjunto mais difícil e fragmentado.</p>
@@ -1106,138 +1089,169 @@
             </div>
         </section>
 
-        <section class="tech-section" id="tech">
-            <h2 class="section-title">Tecnologias Utilizadas</h2>
+        <section class="section" id="tech">
+            <div class="section-header">
+                <h2 class="section-title">Tecnologias Utilizadas</h2>
+            </div>
+            
             <p class="section-subtitle">O Groover foi desenvolvido com um conjunto integrado de tecnologias modernas para garantir performance e experiência de usuário excepcionais</p>
             
-            <div class="tech-grid">
-                <a href="https://reactjs.org/docs/getting-started.html" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fab fa-react"></i>
+            <div class="cards-grid">
+                <a href="https://reactjs.org/docs/getting-started.html" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3 class="card-title">React.js com Next.js</h3>
                     </div>
-                    <h3 class="tech-title">React.js com Next.js</h3>
-                    <p class="tech-description">Frontend desenvolvido com React.js aproveitando a arquitetura de componentes para uma experiência fluida e responsiva. Next.js como framework base permite renderização do lado servidor (SSR) e geração estática (SSG), otimizando o desempenho e tempo de carregamento.</p>
+                    <p class="card-description">Frontend desenvolvido com React.js aproveitando a arquitetura de componentes para uma experiência fluida e responsiva. Next.js como framework base permite renderização do lado servidor (SSR) e geração estática (SSG), otimizando o desempenho e tempo de carregamento.</p>
+                    <div class="card-footer">
+                        <span>Framework Frontend</span>
+                    </div>
                 </a>
                 
-                <a href="https://flask.palletsprojects.com/en/2.3.x/" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fab fa-python"></i>
+                <a href="https://flask.palletsprojects.com/en/2.3.x/" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="card-title">Python com Flask</h3>
                     </div>
-                    <h3 class="tech-title">Python com Flask</h3>
-                    <p class="tech-description">Backend construído utilizando Flask, um microframework Python que oferece a flexibilidade necessária para endpoints especializados em processing musical. API robusta para gerenciamento de usuários, projetos e colaborações em tempo real.</p>
+                    <p class="card-description">Backend construído utilizando Flask, um microframework Python que oferece a flexibilidade necessária para endpoints especializados em processing musical. API robusta para gerenciamento de usuários, projetos e colaborações em tempo real.</p>
+                    <div class="card-footer">
+                        <span>Framework Backend</span>
+                    </div>
                 </a>
                 
-                <a href="https://www.mongodb.com/docs/" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-database"></i>
+                <a href="https://www.mongodb.com/docs/" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="card-title">MongoDB</h3>
                     </div>
-                    <h3 class="tech-title">MongoDB</h3>
-                    <p class="tech-description">Banco de dados NoSQL escolhido por seu esquema flexível, ideal para a estrutura variável de projetos musicais colaborativos. Armazena usuários, projetos, faixas MIDI, histórico de versões e todas as informações da plataforma.</p>
+                    <p class="card-description">Banco de dados NoSQL escolhido por seu esquema flexível, ideal para a estrutura variável de projetos musicais colaborativos. Armazena usuários, projetos, faixas MIDI, histórico de versões e todas as informações da plataforma.</p>
+                    <div class="card-footer">
+                        <span>Banco de Dados</span>
+                    </div>
                 </a>
                 
-                <a href="https://tonejs.github.io/docs/" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-music"></i>
+                <a href="https://tonejs.github.io/docs/" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3 class="card-title">Tone.js & Web Audio API</h3>
                     </div>
-                    <h3 class="tech-title">Tone.js & Web Audio API</h3>
-                    <p class="tech-description">Para o núcleo de áudio e MIDI, utilizamos a biblioteca Tone.js que oferece poderosas abstrações para síntese, reprodução e manipulação de áudio diretamente no navegador. Web Audio API para processamento de áudio de baixo nível.</p>
+                    <p class="card-description">Para o núcleo de áudio e MIDI, utilizamos a biblioteca Tone.js que oferece poderosas abstrações para síntese, reprodução e manipulação de áudio diretamente no navegador. Web Audio API para processamento de áudio de baixo nível.</p>
+                    <div class="card-footer">
+                        <span>Processamento de Áudio</span>
+                    </div>
                 </a>
                 
-                <a href="https://www.i18next.com/overview/getting-started" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-language"></i>
+                <a href="https://www.i18next.com/overview/getting-started" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3 class="card-title">i18next</h3>
                     </div>
-                    <h3 class="tech-title">i18next</h3>
-                    <p class="tech-description">Sistema de internacionalização para suporte a múltiplos idiomas (Português e Inglês). A preferência de idioma é gerenciada através de um LanguageProvider e armazenada localmente no navegador do usuário.</p>
+                    <p class="card-description">Sistema de internacionalização para suporte a múltiplos idiomas (Português e Inglês). A preferência de idioma é gerenciada através de um LanguageProvider e armazenada localmente no navegador do usuário.</p>
+                    <div class="card-footer">
+                        <span>Internacionalização</span>
+                    </div>
                 </a>
                 
-                <a href="https://vercel.com/docs" target="_blank" class="tech-card">
-                    <div class="tech-icon">
-                        <i class="fas fa-server"></i>
+                <a href="https://vercel.com/docs" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="card-title">Vercel & Render</h3>
                     </div>
-                    <h3 class="tech-title">Vercel & Render</h3>
-                    <p class="tech-description">Frontend hospedado na Vercel com integração contínua com repositórios Git. Backend hospedado via Render.com garantindo escalabilidade automática conforme a demanda. Infrastructure as Code para deploy automatizado.</p>
+                    <p class="card-description">Frontend hospedado na Vercel com integração contínua com repositórios Git. Backend hospedado via Render.com garantindo escalabilidade automática conforme a demanda. Infrastructure as Code para deploy automatizado.</p>
+                    <div class="card-footer">
+                        <span>Hospedagem e Deploy</span>
+                    </div>
                 </a>
             </div>
         </section>
 
-        <section class="team-section" id="team">
-            <div class="team-vectora-logo">
-                <img src="imgs/logotv.png" alt="Team Vectora Logo">
-            </div>
-            
-            <div class="team-content">
+        <section class="section" id="team">
+            <div class="team-header">
+                <div class="team-vectora-logo">
+                    <img src="imgs/logotv.png" alt="Team Vectora Logo">
+                </div>
                 <div class="team-description">
                     <p>O Team Vectora é formado por cinco estudantes do 4º ano do curso técnico em Informática do Instituto Federal de São Paulo (IFSP), criado para a disciplina de Projeto e Desenvolvimento de Sistemas (PDS). Nossa missão é unir tecnologia e música em soluções inovadoras que democratizem o acesso à produção musical profissional.</p>
-                    <p>No ano anterior, desenvolvimos o GrooveClub, uma rede social especializada para músicos que permite compartilhamento de conteúdo, networking e descoberta de novos talentos. O sucesso e aprendizado com o GrooveClub inspiraram a criação do Groover, uma evolução natural que foca na etapa de criação musical em si, fechando o ciclo completo desde a composição até a distribuição.</p>
-                    <p>Nosso trabalho seguir metodologias ágeis adaptadas, com ciclos iterativos e incrementais que possibilitam entregas frequentes e revisões constantes. Utilizamos ferramentas modernas como Git para controle de versão e seguimos boas práticas de arquitetura de software com separação clara entre lógica de apresentação, negócios e dados.</p>
+                    <p>No ano anterior, desenvolvemos o GrooveClub, uma rede social especializada para músicos que permite compartilhamento de conteúdo, networking e descoberta de novos talentos. O sucesso e aprendizado com o GrooveClub inspiraram a criação do Groover, uma evolução natural que foca na etapa de criação musical em si, fechando o ciclo completo desde a composição até a distribuição.</p>
+                    <p>Nosso trabalho segue metodologias ágeis adaptadas, com ciclos iterativos e incrementais que possibilitam entregas frequentes e revisões constantes. Utilizamos ferramentas modernas como Git para controle de versão e seguimos boas práticas de arquitetura de software com separação clara entre lógica de apresentação, negócios e dados.</p>
                 </div>
             </div>
             
             <h3 class="section-subtitle">Nossos Desenvolvedores</h3>
             
-            <div class="developers-grid">
-                <div class="developer-card">
-                    <div class="developer-photo">
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="member-photo">
                         <img src="imgs/ana.jpg" alt="Ana Oliveira">
                     </div>
-                    <h3 class="developer-name">Ana Oliveira</h3>
-                    <p class="developer-role">Criação Artística e Documentação</p>
-                    <p class="developer-description">Responsável pela concepção visual do projeto e organização da documentação técnica. Cuida da identidade artística và garantia de qualidade da experiência creativa.</p>
-                    <div class="developer-links">
+                    <h3 class="member-name">Ana Oliveira</h3>
+                    <p class="member-role">Criação Artística e Documentação</p>
+                    <p class="member-description">Responsável pela concepção visual do projeto e organização da documentação técnica. Cuida da identidade artística và garantia de qualidade da experiência creativa.</p>
+                    <div class="member-links">
                         <a href="https://www.linkedin.com/in/ana-luísa-de-oliveira-camardella-228123305/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/tiredmoth" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 
-                <div class="developer-card">
-                    <div class="developer-photo">
+                <div class="member-card">
+                    <div class="member-photo">
                         <img src="imgs/andré.jpg" alt="André Araújo">
                     </div>
-                    <h3 class="developer-name">André Araújo</h3>
-                    <p class="developer-role">Desenvolvedor Fullstack</p>
-                    <p class="developer-description">Especialista em desenvolvimento frontend e backend. Contribui com a arquitetura do sistema e implementação do lado do servidor, garantindo escalabilidade e performance.</p>
-                    <div class="developer-links">
+                    <h3 class="member-name">André Araújo</h3>
+                    <p class="member-role">Desenvolvedor Fullstack</p>
+                    <p class="member-description">Especialista em desenvolvimento frontend e backend. Contribui com a arquitetura do sistema e implementação do lado do servidor, garantindo escalabilidade e performance.</p>
+                    <div class="member-links">
                         <a href="https://www.linkedin.com/in/andre-araujo-s/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/Andre-06" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 
-                <div class="developer-card">
-                    <div class="developer-photo">
+                <div class="member-card">
+                    <div class="member-photo">
                         <img src="imgs/joão.jpg" alt="João Haupt">
                     </div>
-                    <h3 class="developer-name">João Haupt</h3>
-                    <p class="developer-role">Desenvolvedor Fullstack</p>
-                    <p class="developer-description">Foca no desenvolvimento do backend, modelagem de dados e construção de funcionalidades para processamento musical e colaboração em tempo real.</p>
-                    <div class="developer-links">
+                    <h3 class="member-name">João Haupt</h3>
+                    <p class="member-role">Desenvolvedor Fullstack</p>
+                    <p class="member-description">Foca no desenvolvimento do backend, modelagem de dados e construção de funcionalidades para processamento musical e colaboração em tempo real.</p>
+                    <div class="member-links">
                         <a href="https://www.linkedin.com/in/joão-augusto-haupt-fonseca-oliveira/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/JoaoAHaupt" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 
-                <!-- Segunda linha com Laura e Marino ocupando toda a linha -->
-                <div class="developer-card large">
-                    <div class="developer-photo large">
+                <div class="member-card">
+                    <div class="member-photo">
                         <img src="imgs/laura.jpg" alt="Laura Daguer">
                     </div>
-                    <h3 class="developer-name">Laura Daguer</h3>
-                    <p class="developer-role">UI/UX Designer</p>
-                    <p class="developer-description">Responsável pela experiência do usuário e interface visual da plataforma. Cria wireframes, protótipos e define a paleta de cores para uma interface intuitiva e agradável.</p>
-                    <div class="developer-links">
+                    <h3 class="member-name">Laura Daguer</h3>
+                    <p class="member-role">UI/UX Designer</p>
+                    <p class="member-description">Responsável pela experiência do usuário e interface visual da plataforma. Cria wireframes, protótipos e define a paleta de cores para uma interface intuitiva e agradável.</p>
+                    <div class="member-links">
                         <a href="https://www.linkedin.com/in/lauradaguerds/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/AruDaguer" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 
-                <div class="developer-card large">
-                    <div class="developer-photo large">
+                <div class="member-card">
+                    <div class="member-photo">
                         <img src="imgs/marino.jpg" alt="Marino Makoto">
                     </div>
-                    <h3 class="developer-name">Marino Makoto</h3>
-                    <p class="developer-role">Branding e Identidade Visual</p>
-                    <p class="developer-description">Foca na identidade visual do projeto, incluindo o design de logotipos, elementos gráficos e estratégia de marca para posicionamento do Groover no mercado.</p>
-                    <div class="developer-links">
+                    <h3 class="member-name">Marino Makoto</h3>
+                    <p class="member-role">Branding e Identidade Visual</p>
+                    <p class="member-description">Foca na identidade visual do projeto, incluindo o design de logotipos, elementos gráficos e estratégia de marca para posicionamento do Groover no mercado.</p>
+                    <div class="member-links">
                         <a href="https://www.linkedin.com/in/marino-makoto-yorinori/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://github.com/MarinoYorinori" title="GitHub"><i class="fab fa-github"></i></a>
                     </div>
@@ -1245,8 +1259,11 @@
             </div>
         </section>
 
-        <section class="contact-section" id="contact">
-            <h2 class="section-title">Fale Conosco</h2>
+        <section class="section" id="contact">
+            <div class="section-header">
+                <h2 class="section-title">Fale Conosco</h2>
+            </div>
+            
             <p class="section-subtitle">Entre em contato com o Team Vectora para mais informações sobre o Groover</p>
             
             <div class="contact-grid">
@@ -1301,6 +1318,7 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <img src="imgs/logog.png" alt="Groover Logo">
+                    <p class="footer-description">Plataforma inovadora para criação musical colaborativa com editor MIDI compartilhado.</p>
                 </div>
                 
                 <div>
@@ -1548,11 +1566,38 @@
             });
         }
         
-        // Inicializar carrosséis quando o DOM estiver carregado
+        // Ativar link ativo na navegação
+        function setupActiveNav() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Inicializar quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', function() {
             initCarousels();
             setupContactForm();
             setupMobileMenu();
+            setupActiveNav();
             
             // Configurar URL de redirecionamento para o formulário
             const nextInput = document.querySelector('input[name="_next"]');

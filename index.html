@@ -9,6 +9,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Tema Claro (padrão) */
+            --groove-light: #f5f5f7;
+            --groove-white: #ffffff;
+            --groove-light-gray: #f8f9fa;
+            --groove-gray: #6c757d;
+            --groove-dark: #343a40;
+            --groove-olive-dark: #5c6c3d;
+            --groove-olive-light: #7a8c5a;
+            --groove-brown: #ac7e4b;
+            --groove-bg: #ffffff;
+            --groove-card: #f8f9fa;
+            --groove-text: #343a40;
+            --groove-border: rgba(108, 117, 125, 0.2);
+            --groove-highlight: rgba(172, 126, 75, 0.1);
+            --groove-gradient: linear-gradient(135deg, var(--groove-olive-dark) 0%, var(--groove-brown) 100%);
+            --groove-blue: #4a6b9b;
+            --groove-purple: #7b4b8c;
+            --groove-teal: #3c8d89;
+            --github-light: #ffffff;
+            --github-border: #e1e4e8;
+            --github-card: #f6f8fa;
+        }
+
+        /* Tema Escuro */
+        .dark-theme {
             --groove-dark: #0a090e;
             --groove-olive-dark: #4c4e2d;
             --groove-olive-light: #61663a;
@@ -26,6 +51,7 @@
             --github-dark: #0d1117;
             --github-border: #30363d;
             --github-card: #161b22;
+            --github-light: #0d1117;
         }
 
         * {
@@ -42,6 +68,32 @@
             position: relative;
             overflow-x: hidden;
             font-weight: 400;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Botão de alternância de tema */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--groove-border);
+            color: var(--groove-text);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--groove-highlight);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
         }
 
         /* Notas musicais animadas */
@@ -52,6 +104,7 @@
             animation: floatNote linear infinite;
             bottom: -50px;
             pointer-events: none;
+            color: var(--groove-olive-light);
         }
         
         @keyframes floatNote {
@@ -67,17 +120,24 @@
             }
         }
 
-        /* Header estilo GitHub */
+        /* Header */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: var(--github-dark);
+            background: var(--github-light);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--github-border);
             z-index: 1000;
             padding: 0.8rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .dark-theme header {
+            background: var(--github-dark);
+            border-bottom: 1px solid var(--github-border);
         }
 
         .nav-container {
@@ -94,11 +154,15 @@
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             font-weight: 700;
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             z-index: 1001;
+        }
+
+        .dark-theme .logo {
+            color: var(--groove-light);
         }
 
         .logo-img {
@@ -164,11 +228,15 @@
         .hamburger span {
             width: 2rem;
             height: 0.25rem;
-            background: var(--groove-light);
+            background: var(--groove-dark);
             border-radius: 10px;
             transition: all 0.3s linear;
             position: relative;
             transform-origin: 1px;
+        }
+
+        .dark-theme .hamburger span {
+            background: var(--groove-light);
         }
 
         .hamburger.active span:nth-child(1) {
@@ -186,7 +254,7 @@
         .cta-button {
             display: inline-block;
             background: var(--groove-gradient);
-            color: var(--groove-dark);
+            color: white;
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
             text-decoration: none;
@@ -209,7 +277,7 @@
             padding: 2rem;
         }
 
-        /* Hero Section estilo GitHub */
+        /* Hero Section */
         .hero-section {
             display: flex;
             align-items: center;
@@ -228,22 +296,30 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin: 2rem 0 1rem;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             line-height: 1.1;
             font-weight: 700;
+        }
+
+        .dark-theme .hero-title {
+            color: var(--groove-light);
         }
         
         .hero-subtitle {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-            color: var(--groove-olive-light);
+            color: var(--groove-olive-dark);
             margin: 1rem 0 2rem;
             font-weight: 500;
         }
 
+        .dark-theme .hero-subtitle {
+            color: var(--groove-olive-light);
+        }
+
         .hero-description {
             font-size: 1.1rem;
-            color: rgba(245, 245, 247, 0.8);
+            color: var(--groove-gray);
             margin-bottom: 2rem;
             line-height: 1.8;
         }
@@ -257,13 +333,17 @@
         .secondary-button {
             display: inline-block;
             background: transparent;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             border: 1px solid var(--github-border);
+        }
+
+        .dark-theme .secondary-button {
+            color: var(--groove-light);
         }
         
         .secondary-button:hover {
@@ -275,9 +355,13 @@
             flex: 1;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--github-border);
             position: relative;
+        }
+
+        .dark-theme .hero-visual {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* Carousel Styles */
@@ -321,9 +405,13 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(0, 0, 0, 0.3);
             cursor: pointer;
             transition: background-color 0.3s ease;
+        }
+
+        .dark-theme .carousel-indicator {
+            background-color: rgba(255, 255, 255, 0.5);
         }
 
         .carousel-indicator.active {
@@ -335,8 +423,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: var(--groove-dark);
             border: none;
             width: 40px;
             height: 40px;
@@ -347,10 +435,17 @@
             cursor: pointer;
             z-index: 10;
             transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .carousel-nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
         }
 
         .carousel-nav:hover {
             background-color: var(--groove-brown);
+            color: white;
         }
 
         .carousel-nav.prev {
@@ -361,23 +456,28 @@
             right: 15px;
         }
 
-        /* Sections estilo GitHub */
+        /* Sections */
         .section {
             margin-bottom: 4rem;
             padding: 3rem 0;
             border-bottom: 1px solid var(--github-border);
+            transition: border-color 0.3s ease;
         }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 1.5rem;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             font-weight: 600;
         }
 
+        .dark-theme .section-title {
+            color: var(--groove-light);
+        }
+
         .section-subtitle {
-            color: var(--groove-olive-light);
+            color: var(--groove-gray);
             margin-bottom: 2rem;
             font-size: 1.2rem;
             max-width: 800px;
@@ -390,7 +490,7 @@
             margin-bottom: 2rem;
         }
 
-        /* Cards estilo GitHub */
+        /* Cards */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -425,8 +525,12 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border-color: var(--groove-olive-light);
+        }
+
+        .dark-theme .card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .card:hover::before {
@@ -449,12 +553,16 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             font-weight: 600;
         }
 
+        .dark-theme .card-title {
+            color: var(--groove-light);
+        }
+
         .card-description {
-            color: rgba(245, 245, 247, 0.7);
+            color: var(--groove-gray);
             line-height: 1.6;
             font-size: 0.95rem;
         }
@@ -463,7 +571,7 @@
             margin-top: 1.5rem;
             display: flex;
             align-items: center;
-            color: var(--groove-olive-light);
+            color: var(--groove-gray);
             font-size: 0.85rem;
         }
 
@@ -476,7 +584,7 @@
         }
 
         .about-text {
-            color: rgba(245, 245, 247, 0.8);
+            color: var(--groove-gray);
             line-height: 1.8;
             font-size: 1rem;
         }
@@ -488,32 +596,56 @@
         .about-image {
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        /* Team Section */
+        .dark-theme .about-image {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Team Section - CORREÇÃO APLICADA AQUI */
         .team-header {
-            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
             margin-bottom: 3rem;
+            text-align: left;
         }
 
         .team-vectora-logo {
-            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background-color: #1a1a1a; /* Fundo escuro para a logo no tema claro */
+        }
+
+        .dark-theme .team-vectora-logo {
+            background-color: transparent; /* No tema escuro, fundo transparente */
         }
 
         .team-vectora-logo img {
-            max-width: 300px;
+            max-width: 100%;
             height: auto;
+            filter: brightness(0) invert(1); /* Torna a logo branca */
+        }
+
+        .dark-theme .team-vectora-logo img {
+            filter: none; /* Remove o filtro no tema escuro */
         }
 
         .team-description {
-            color: rgba(245, 245, 247, 0.8);
+            color: var(--groove-gray);
             line-height: 1.8;
             font-size: 1.1rem;
-            max-width: 900px;
-            margin: 0 auto 2rem;
-            text-align: center;
+            text-align: left;
+        }
+
+        .team-description p {
+            margin-bottom: 1.5rem;
         }
 
         .team-grid {
@@ -537,8 +669,12 @@
 
         .member-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             border-color: var(--groove-olive-light);
+        }
+
+        .dark-theme .member-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .member-photo {
@@ -547,7 +683,11 @@
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto 1.5rem;
-            border: 3px solid var(--groove-olive-dark);
+            border: 3px solid var(--groove-olive-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .member-photo {
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
@@ -559,9 +699,13 @@
 
         .member-name {
             font-size: 1.3rem;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             margin-bottom: 0.5rem;
             font-weight: 600;
+        }
+
+        .dark-theme .member-name {
+            color: var(--groove-light);
         }
 
         .member-role {
@@ -572,7 +716,7 @@
         }
 
         .member-description {
-            color: rgba(245, 245, 247, 0.7);
+            color: var(--groove-gray);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
             line-height: 1.5;
@@ -596,13 +740,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: rgba(76, 78, 45, 0.2);
+            background-color: rgba(122, 140, 90, 0.1);
             border: 1px solid var(--github-border);
             text-decoration: none;
         }
 
         .member-links a:hover {
-            color: var(--groove-light);
+            color: white;
             background-color: var(--groove-brown);
             transform: scale(1.1);
         }
@@ -616,7 +760,7 @@
         }
 
         .contact-info {
-            color: rgba(245, 245, 247, 0.8);
+            color: var(--groove-gray);
             line-height: 1.8;
         }
 
@@ -640,13 +784,13 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background-color: rgba(76, 78, 45, 0.2);
+            background-color: rgba(122, 140, 90, 0.1);
             border: 1px solid var(--github-border);
             text-decoration: none;
         }
 
         .social-link:hover {
-            color: var(--groove-light);
+            color: white;
             background-color: var(--groove-brown);
             transform: scale(1.1);
         }
@@ -665,9 +809,13 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             font-weight: 500;
             font-size: 0.9rem;
+        }
+
+        .dark-theme .form-group label {
+            color: var(--groove-light);
         }
 
         .form-group input,
@@ -676,11 +824,17 @@
             padding: 0.8rem;
             border-radius: 6px;
             border: 1px solid var(--github-border);
-            background-color: var(--github-dark);
-            color: var(--groove-light);
+            background-color: white;
+            color: var(--groove-text);
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
             transition: border-color 0.3s;
+        }
+
+        .dark-theme .form-group input,
+        .dark-theme .form-group textarea {
+            background-color: var(--github-dark);
+            color: var(--groove-light);
         }
 
         .form-group input:focus,
@@ -704,32 +858,55 @@
         }
 
         .form-status.success {
+            background-color: rgba(46, 125, 50, 0.1);
+            border: 1px solid rgba(46, 125, 50, 0.3);
+            color: #2e7d32;
+            display: block;
+        }
+
+        .dark-theme .form-status.success {
             background-color: rgba(46, 125, 50, 0.2);
             border: 1px solid rgba(46, 125, 50, 0.5);
             color: #a5d6a7;
-            display: block;
         }
 
         .form-status.error {
-            background-color: rgba(211, 47, 47, 0.2);
-            border: 1px solid rgba(211, 47, 47, 0.5);
-            color: #e57373;
+            background-color: rgba(211, 47, 47, 0.1);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #d32f2f;
             display: block;
         }
 
+        .dark-theme .form-status.error {
+            background-color: rgba(211, 47, 47, 0.2);
+            border: 1px solid rgba(211, 47, 47, 0.5);
+            color: #e57373;
+        }
+
         .form-status.loading {
+            background-color: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            color: #2196f3;
+            display: block;
+        }
+
+        .dark-theme .form-status.loading {
             background-color: rgba(33, 150, 243, 0.2);
             border: 1px solid rgba(33, 150, 243, 0.5);
             color: #90caf9;
-            display: block;
         }
 
         /* Footer */
         footer {
-            background-color: var(--github-dark);
+            background-color: var(--github-light);
             padding: 3rem 0 2rem;
             margin-top: 4rem;
             border-top: 1px solid var(--github-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .dark-theme footer {
+            background-color: var(--github-dark);
         }
 
         .footer-content {
@@ -750,17 +927,21 @@
         }
 
         .footer-description {
-            color: rgba(245, 245, 247, 0.7);
+            color: var(--groove-gray);
             line-height: 1.6;
             font-size: 0.9rem;
         }
 
         .footer-heading {
             font-family: 'Space Grotesk', sans-serif;
-            color: var(--groove-light);
+            color: var(--groove-dark);
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
             font-weight: 600;
+        }
+
+        .dark-theme .footer-heading {
+            color: var(--groove-light);
         }
 
         .footer-links {
@@ -772,7 +953,7 @@
         }
 
         .footer-links a {
-            color: rgba(245, 245, 247, 0.7);
+            color: var(--groove-gray);
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: 0.9rem;
@@ -786,7 +967,7 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid var(--github-border);
-            color: var(--groove-olive-light);
+            color: var(--groove-gray);
             font-size: 0.9rem;
         }
 
@@ -842,6 +1023,17 @@
             
             .contact-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* CORREÇÃO RESPONSIVA PARA A SEÇÃO TEAM */
+            .team-header {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .team-description {
+                text-align: center;
             }
 
             .hero-title {
@@ -903,6 +1095,10 @@
             .member-photo {
                 width: 150px;
                 height: 150px;
+            }
+
+            .theme-toggle {
+                margin-left: 0.5rem;
             }
         }
 
@@ -999,6 +1195,10 @@
             </button>
             
             <a href="https://groover.app.br" class="cta-button">Experimente Agora</a>
+            
+            <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -1178,14 +1378,19 @@
         </section>
 
         <section class="section" id="team">
+            <div class="section-header">
+                <h2 class="section-title">Team Vectora</h2>
+            </div>
+            
+            <!-- CORREÇÃO APLICADA AQUI - Layout grid para logo e descrição -->
             <div class="team-header">
-                <div class="team-vectora-logo">
-                    <img src="imgs/logotv.png" alt="Team Vectora Logo">
-                </div>
                 <div class="team-description">
                     <p>O Team Vectora é formado por cinco estudantes do 4º ano do curso técnico em Informática do Instituto Federal de São Paulo (IFSP), criado para a disciplina de Projeto e Desenvolvimento de Sistemas (PDS). Nossa missão é unir tecnologia e música em soluções inovadoras que democratizem o acesso à produção musical profissional.</p>
                     <p>No ano anterior, desenvolvemos o GrooveClub, uma rede social especializada para músicos que permite compartilhamento de conteúdo, networking e descoberta de novos talentos. O sucesso e aprendizado com o GrooveClub inspiraram a criação do Groover, uma evolução natural que foca na etapa de criação musical em si, fechando o ciclo completo desde a composição até a distribuição.</p>
                     <p>Nosso trabalho segue metodologias ágeis adaptadas, com ciclos iterativos e incrementais que possibilitam entregas frequentes e revisões constantes. Utilizamos ferramentas modernas como Git para controle de versão e seguimos boas práticas de arquitetura de software com separação clara entre lógica de apresentação, negócios e dados.</p>
+                </div>
+                <div class="team-vectora-logo">
+                    <img src="imgs/logotv.png" alt="Team Vectora Logo">
                 </div>
             </div>
             
@@ -1359,6 +1564,43 @@
     </footer>
 
     <script>
+        // Sistema de alternância de tema
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const body = document.body;
+            
+            // Verificar preferência salva ou padrão do sistema
+            const savedTheme = localStorage.getItem('groover-theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Aplicar tema inicial
+            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                body.classList.add('dark-theme');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                body.classList.remove('dark-theme');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+            
+            // Alternar tema ao clicar
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                
+                if (body.classList.contains('dark-theme')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('groover-theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('groover-theme', 'light');
+                }
+            });
+        }
+        
         function createMusicNotes() {
             // Verificar se o usuário prefere reduzir movimento
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1594,6 +1836,7 @@
         
         // Inicializar quando o DOM estiver carregado
         document.addEventListener('DOMContentLoaded', function() {
+            setupThemeToggle();
             initCarousels();
             setupContactForm();
             setupMobileMenu();
